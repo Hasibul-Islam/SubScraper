@@ -3,8 +3,9 @@ This is a django pet project. The system takes input of movie name in the search
 
 How to Use:
 
-git clone https://github.com/Hasibul-Islam/SubScraper.git
-pip install -r requirements.txt
+<p>git clone https://github.com/Hasibul-Islam/SubScraper.git</p>
+
+<p>pip install -r requirements.txt</p>
 
 Go!
 
