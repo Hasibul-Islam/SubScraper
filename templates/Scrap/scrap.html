@@ -7,6 +7,18 @@
 
 
 <!-- The form -->
+
+{% if not_found %}
+<script>
+  alert('{{ not_found }}');
+</script>
+{% endif %}
+
+
+
+<div>
+  <h1 style="text-align: center;"><strong> Sub Scraper</strong></h1>
+</div>
 <form class="example" action="" method="POST">
     {% csrf_token %}
   <input type="text" placeholder="Search.." name="search">

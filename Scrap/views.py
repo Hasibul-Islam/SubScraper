@@ -5,6 +5,8 @@ from bs4 import BeautifulSoup
 import os
 from django.conf import settings
 from django.http import FileResponse
+import re
+
 
 def download(request, path):
     file_path = os.path.join(settings.MEDIA_ROOT, path)
@@ -14,6 +16,7 @@ def download(request, path):
         with open(file_path, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="application/force-download")
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            # os.remove(file_path)
             return response
     
         
@@ -23,19 +26,24 @@ def download(request, path):
 def scrap(request):
 
     if request.method == 'POST':
+        
+        mydir = settings.MEDIA_ROOT
+        for file in os.listdir(mydir):
+            os.remove(os.path.join(mydir, file))
         # print('yes')
         find = request.POST.get('search','')
         movie = find
         # print(find)
         url = "https://www.google.com/search?q="
         find = find.strip()
+        find = re.sub(r'[^\w\s]', ' ', find)
+        # print(find)
         find+=" english subtitle subscene"
-        find = find.split(' ')
-        find = [word.lower() for word in find]
+        find = ' '.join(find.split())
 
         try:
             
-            url = url + '+'.join(find)
+            url = url + '+'.join(find.split())
             # print(url)
             google_url_data = requests.get(url)
             soup = BeautifulSoup(google_url_data.text,'html.parser')
@@ -44,26 +52,26 @@ def scrap(request):
             sub_links = []
             
         except:
-            pass
+            return render(request, 'Scrap/scrap.html',{'not_found': 'Something Went Wrong! Try Input a Valid Movie Name.'})
             
 
 
         try:
             for link in init_links:
                 header_3 = link.find_all('h3')
-                count = 0
                 for header in header_3:
+                    count = 0
                     if header:
                         header_text = header.text.lower()
+                        header_text = re.sub(r'[^\w\s]', ' ', header_text)
+                        header_text = ' '.join(header_text.split())
                         # print(header_text)
-                        for word in find:
-                            # print(word)
-                            if word in header_text.split():
-                                count+=1
-                if count==len(find):
-                    sub_links.append(link['href'])
+                        if 'english subtitle subscene' in header_text and 'search results' not in header_text:
+                            count = 1
+                    if count>0:
+                        sub_links.append(link['href'])
         except:
-            pass
+            return render(request, 'Scrap/scrap.html',{'not_found': 'Something Went Wrong! Try Input a Valid Movie Name.'})
             
         
         try:
@@ -77,7 +85,7 @@ def scrap(request):
             # print(soup_subscene)
             final_link = "https://subscene.com"
         except:
-            pass
+            return render(request, 'Scrap/scrap.html',{'not_found': 'Something Went Wrong! Try Input a Valid Movie Name.'})
             
 
 
@@ -100,15 +108,14 @@ def scrap(request):
             
             # os.remove(file_path)
             return response
-            return redirect('/scrap')
 
             
 
             
         except:
-            pass
+            return render(request, 'Scrap/scrap.html',{'not_found': 'The Movie Not Found, Please Input A Valid Movie Name.'})
     
-
+        return redirect('/scrap')
         
         
     

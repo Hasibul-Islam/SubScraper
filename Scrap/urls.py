@@ -6,7 +6,7 @@ from Scrap import views
 from django.conf.urls.static import static
 urlpatterns = [
 
-    url('scrap/', views.scrap),
+    url('', views.scrap),
     
 
 ]
