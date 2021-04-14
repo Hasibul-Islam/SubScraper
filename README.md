@@ -14,5 +14,5 @@ How to Use:
 Go!
 
 
-![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot1.png?raw=true)
+![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot1.PNG?raw=true)
 
