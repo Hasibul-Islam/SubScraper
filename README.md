@@ -11,8 +11,19 @@ How to Use:
 
 <p>pip install -r requirements.txt</p>
 
-Go!
+Go to home page!
 
 
 ![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot1.PNG?raw=true)
+
+Now enter your movie name
+
+![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot3.PNG?raw=true)
+
+
+Hit enter. And BOOOOM!
+
+
+![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot1.PNG?raw=true)
+
 
