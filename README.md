@@ -11,7 +11,9 @@ How to Use:
 
 <p>pip install -r requirements.txt</p>
 
-Go to home page!
+The app is deployed here:  https://afternoon-beach-59165.herokuapp.com/
+
+Hit the link!
 
 
 ![alt text](https://github.com/Hasibul-Islam/SubScraper/blob/main/static_in_env/Scrap/img/screenshot1.PNG?raw=true)
